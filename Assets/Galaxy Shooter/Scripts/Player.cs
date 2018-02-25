@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    [SerializeField]
+    private int lives = 3;
     [SerializeField]
     private float _speed = 5.0f;
     [SerializeField]
@@ -20,7 +21,14 @@ public class Player : MonoBehaviour
     private bool isShotTripled = false;
     private bool isSpeedBoosted = false;
 
-	// Use this for initialization
+    public void damage(){
+        lives--;
+        if(lives <= 0) {
+            Destroy(this.gameObject);
+        }
+    }
+
+    // Use this for initialization
     void Start()
     {
         Debug.Log("Hello world!");
@@ -56,7 +64,7 @@ public class Player : MonoBehaviour
     private void Shoot(){
         if(Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
             if(Time.time > fireTime) {
-                if(isShotTripled) {
+                if(isShotTripled == true) {
                     Instantiate(tripleShotPrefab, new Vector3(this.transform.position.x, this.transform.position.y, 0), Quaternion.identity);
                 } else {
 					Instantiate(laserPrefab, new Vector3(this.transform.position.x, this.transform.position.y + _laserDistancefromPlayer, 0), Quaternion.identity);
