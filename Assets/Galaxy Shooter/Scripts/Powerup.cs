@@ -5,7 +5,9 @@ using UnityEngine;
 public class Powerup : MonoBehaviour {
 
     [SerializeField]
-    private float _speed = 2.0f;
+    private float _speed = 0.8f;
+    [SerializeField]
+    private int powerUpId; //0:tripleshot 1: speed 2: shield
 
 	// Use this for initialization
 	void Start () {
@@ -22,9 +24,20 @@ public class Powerup : MonoBehaviour {
 			Player player = collision.GetComponent<Player>();
 
             if(player != null) {
-				player.TripleShotPowerUpOn();                
-			}
-		    
+                switch (powerUpId){
+                    case 0:
+                        player.TripleShotPowerUpOn();
+                        break;
+                    case 1:
+                        player.SpeedPowerUpOn();
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        Debug.Log("Error handling");
+                        break;
+                }
+            }
             Destroy(this.gameObject);
         }
     }
