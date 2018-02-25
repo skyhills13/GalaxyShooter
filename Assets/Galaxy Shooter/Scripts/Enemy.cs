@@ -5,6 +5,9 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     [SerializeField]
+    private GameObject explosionPrefab;
+
+    [SerializeField]
     private float speed = 1f;
 	// Use this for initialization
 	void Start () {
@@ -25,6 +28,7 @@ public class Enemy : MonoBehaviour {
                 Destroy(collision.transform.parent.gameObject);
             }
             Destroy(collision.gameObject);
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         } else if(collision.tag == "Player") {
             collision.GetComponent<Player>().damage();

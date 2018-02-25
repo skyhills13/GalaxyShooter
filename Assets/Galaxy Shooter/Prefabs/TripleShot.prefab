@@ -36,8 +36,8 @@ GameObject:
   - component: {fileID: 4880391336480596}
   - component: {fileID: 212186955616064072}
   - component: {fileID: 114190259561379128}
-  - component: {fileID: 50858281292082974}
   - component: {fileID: 61480414880386412}
+  - component: {fileID: 50858281292082974}
   m_Layer: 0
   m_Name: Laser_Center
   m_TagString: Laser

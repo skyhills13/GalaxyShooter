@@ -248,11 +248,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4790165658725572, guid: 262b14f44641048a48a8780c8f45fc06, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.59
+      value: -4.14
       objectReference: {fileID: 0}
     - target: {fileID: 4790165658725572, guid: 262b14f44641048a48a8780c8f45fc06, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.75
+      value: 1.83
       objectReference: {fileID: 0}
     - target: {fileID: 4790165658725572, guid: 262b14f44641048a48a8780c8f45fc06, type: 2}
       propertyPath: m_LocalPosition.z
@@ -277,16 +277,6 @@ Prefab:
     - target: {fileID: 4790165658725572, guid: 262b14f44641048a48a8780c8f45fc06, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 212690827635622324, guid: 262b14f44641048a48a8780c8f45fc06,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: 585434757
-      objectReference: {fileID: 0}
-    - target: {fileID: 212690827635622324, guid: 262b14f44641048a48a8780c8f45fc06,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 262b14f44641048a48a8780c8f45fc06, type: 2}
@@ -577,7 +567,9 @@ MonoBehaviour:
   lives: 3
   _speed: 5
   _laserDistancefromPlayer: 0.88
-  laserPrefab: {fileID: 1190993119565202, guid: edbb0fbb37f3b41a3be2948efe7a741a,
+  explosionPrefab: {fileID: 1872471906531556, guid: 455466360e26c4846acd744805199aaf,
+    type: 2}
+  laserPrefab: {fileID: 1148150965121410, guid: edbb0fbb37f3b41a3be2948efe7a741a,
     type: 2}
   tripleShotPrefab: {fileID: 1142675665156216, guid: a9d541e5243f84e09b8b1075f346e408,
     type: 2}

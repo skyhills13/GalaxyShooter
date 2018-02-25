@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _laserDistancefromPlayer = 0.88f;
     [SerializeField]
+    private GameObject explosionPrefab;
+    [SerializeField]
     private GameObject laserPrefab;
     [SerializeField]
     private GameObject tripleShotPrefab;
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     public void damage(){
         lives--;
         if(lives <= 0) {
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
