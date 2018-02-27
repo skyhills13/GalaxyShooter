@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private bool isSpeedBoosted = false;
     private bool shieldActive = false;
 
+    private int score;
 
 
     // Use this for initialization
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         Debug.Log("Hello world!");
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         if(uiManager == null) {
-            throw new SystemException();
+            throw new UnityException();
         }
         uiManager.UpdateLives(lives);
     }

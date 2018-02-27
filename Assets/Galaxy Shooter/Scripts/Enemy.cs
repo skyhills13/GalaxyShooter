@@ -8,10 +8,16 @@ public class Enemy : MonoBehaviour {
     private GameObject explosionPrefab;
 
     [SerializeField]
-    private float speed = 1f;
+    private float speed = 2f;
+
+    private UIManager uiManager;
+
 	// Use this for initialization
 	void Start () {
-		
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if(uiManager == null) {
+            throw new UnityException();
+        }
 	}
 	
 	// Update is called once per frame
@@ -30,6 +36,7 @@ public class Enemy : MonoBehaviour {
             Destroy(collision.gameObject);
 			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
+            uiManager.UpdateScore();
         } else if(collision.tag == "Player") {
             collision.GetComponent<Player>().Damage();
         }
