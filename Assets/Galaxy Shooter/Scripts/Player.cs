@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
     private GameObject shieldsGameObject;
 
+    private UIManager uiManager;
+
     private float _fireInterval = 0.2f;
     private float fireTime = 0.0f;
 
@@ -27,29 +29,17 @@ public class Player : MonoBehaviour
     private bool isSpeedBoosted = false;
     private bool shieldActive = false;
 
-    public void Damage(){
-        if(shieldActive) {
-            shieldActive = false;
-            shieldsGameObject.SetActive(false);
-            return;
-        }
-        lives--;
-        if(lives <= 0) {
-			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
-        }
-    }
+
 
     // Use this for initialization
     void Start()
     {
         Debug.Log("Hello world!");
-
-    }
-
-    public void ActivateShields(){
-        shieldActive = true;
-        shieldsGameObject.SetActive(true);
+        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if(uiManager == null) {
+            throw new SystemException();
+        }
+        uiManager.UpdateLives(lives);
     }
 
     // Update is called once per frame
@@ -58,6 +48,27 @@ public class Player : MonoBehaviour
         Movement();
         Shoot();
     }
+
+
+	public void ActivateShields(){
+		shieldActive = true;
+		shieldsGameObject.SetActive(true);
+	}
+	
+    public void Damage(){
+        if(shieldActive) {
+            shieldActive = false;
+            shieldsGameObject.SetActive(false);
+			return;
+		}
+		
+		lives--;
+		uiManager.UpdateLives(lives);
+		if(lives <= 0) {
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+			Destroy(this.gameObject);
+		}
+	}
     public void TripleShotPowerUpOn(){
         isShotTripled = true;
         StartCoroutine(TripleShotPowerDownRoutine());
