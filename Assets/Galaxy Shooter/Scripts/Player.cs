@@ -13,17 +13,26 @@ public class Player : MonoBehaviour
     private float _laserDistancefromPlayer = 0.88f;
     [SerializeField]
     private GameObject explosionPrefab;
+	[SerializeField]
+	private GameObject tripleShotPrefab;
     [SerializeField]
     private GameObject laserPrefab;
-    [SerializeField]
-    private GameObject tripleShotPrefab;
-    [SerializeField]
+	[SerializeField]
+    private GameObject shieldsGameObject;
+
     private float _fireInterval = 0.2f;
     private float fireTime = 0.0f;
+
     private bool isShotTripled = false;
     private bool isSpeedBoosted = false;
+    private bool shieldActive = false;
 
-    public void damage(){
+    public void Damage(){
+        if(shieldActive) {
+            shieldActive = false;
+            shieldsGameObject.SetActive(false);
+            return;
+        }
         lives--;
         if(lives <= 0) {
 			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
@@ -37,6 +46,12 @@ public class Player : MonoBehaviour
         Debug.Log("Hello world!");
 
     }
+
+    public void ActivateShields(){
+        shieldActive = true;
+        shieldsGameObject.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -89,10 +104,10 @@ public class Player : MonoBehaviour
         }
         this.transform.Translate(Vector3.right * Time.deltaTime * _speed * horizontalInput * boostedDegree);
         this.transform.Translate(Vector3.up * Time.deltaTime * _speed * verticalInput * boostedDegree);
-        checkEdge();
+        CheckEdge();
     }
 
-    private void checkEdge(){
+    private void CheckEdge(){
 		float xBound = 9.5f;
 		float yBound = 4.5f;
 		if (this.transform.position.x >= xBound)

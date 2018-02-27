@@ -32,6 +32,7 @@ public class Powerup : MonoBehaviour {
                         player.SpeedPowerUpOn();
                         break;
                     case 2:
+                        player.ActivateShields();
                         break;
                     default:
                         Debug.Log("Error handling");

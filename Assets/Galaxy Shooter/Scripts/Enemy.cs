@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour {
 			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         } else if(collision.tag == "Player") {
-            collision.GetComponent<Player>().damage();
+            collision.GetComponent<Player>().Damage();
         }
     }
 }
