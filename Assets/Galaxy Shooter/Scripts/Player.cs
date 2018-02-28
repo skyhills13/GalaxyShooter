@@ -19,6 +19,10 @@ public class Player : MonoBehaviour
     private GameObject laserPrefab;
 	[SerializeField]
     private GameObject shieldsGameObject;
+    [SerializeField]
+    private GameObject leftEngine;
+    [SerializeField]
+    private GameObject rightEngine;
 
     private UIManager uiManager;
     private GameManager gameManager;
@@ -69,8 +73,15 @@ public class Player : MonoBehaviour
             shieldsGameObject.SetActive(false);
 			return;
 		}
+
+        lives--;
 		
-		lives--;
+        if(lives == 2) {
+			leftEngine.SetActive(true);
+		}else if(lives == 1) {
+			rightEngine.SetActive(true);
+		}
+		
 		uiManager.UpdateLives(lives);
 		if(lives <= 0) {
 			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
