@@ -36,9 +36,6 @@ public class Player : MonoBehaviour
     private bool isSpeedBoosted = false;
     private bool shieldActive = false;
 
-    private int score;
-
-
     // Use this for initialization
     void Start()
     {
