@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     private UIManager uiManager;
     private GameManager gameManager;
+    private SpawnManager spawnManager;
 
     private float _fireInterval = 0.2f;
     private float fireTime = 0.0f;
@@ -39,10 +40,12 @@ public class Player : MonoBehaviour
         Debug.Log("Hello world!");
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if(uiManager == null || gameManager == null) {
+        spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+        if(uiManager == null || gameManager == null || spawnManager == null) {
             throw new UnityException();
         }
         uiManager.UpdateLives(lives);
+        spawnManager.SpawnObjects();
     }
 
     // Update is called once per frame
