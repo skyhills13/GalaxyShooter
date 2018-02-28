@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private GameObject shieldsGameObject;
 
     private UIManager uiManager;
+    private GameManager gameManager;
 
     private float _fireInterval = 0.2f;
     private float fireTime = 0.0f;
@@ -37,7 +38,8 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Hello world!");
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-        if(uiManager == null) {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(uiManager == null || gameManager == null) {
             throw new UnityException();
         }
         uiManager.UpdateLives(lives);
@@ -68,6 +70,8 @@ public class Player : MonoBehaviour
 		if(lives <= 0) {
 			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
+            gameManager.gameOver = true;
+            uiManager.ShowTitleDisplay();
 		}
 	}
     public void TripleShotPowerUpOn(){
