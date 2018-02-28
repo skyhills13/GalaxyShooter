@@ -8,30 +8,29 @@ public class Powerup : MonoBehaviour {
     private float _speed = 3f;
     [SerializeField]
     private int powerUpId; //0:tripleshot 1: speed 2: shield
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    [SerializeField]
+    private AudioClip audioClip;
 	
-	// Update is called once per frame
-	void Update () {
+    void Update () {
         transform.Translate(Vector3.down * Time.deltaTime * _speed);
-	}
+    }
 
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.tag =="Player") {
-			Player player = collision.GetComponent<Player>();
+            Player player = collision.GetComponent<Player>();
 
             if(player != null) {
                 switch (powerUpId){
                     case 0:
+                        AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position, 1f);
                         player.TripleShotPowerUpOn();
                         break;
                     case 1:
+                        AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position, 1f);
                         player.SpeedPowerUpOn();
                         break;
                     case 2:
+                        AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position, 1f);
                         player.ActivateShields();
                         break;
                     default:

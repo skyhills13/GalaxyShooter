@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private UIManager uiManager;
     private GameManager gameManager;
     private SpawnManager spawnManager;
+    private AudioSource audioSource;
 
     private float _fireInterval = 0.2f;
     private float fireTime = 0.0f;
@@ -37,13 +38,14 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Debug.Log("Hello world!");
         uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
         if(uiManager == null || gameManager == null || spawnManager == null) {
             throw new UnityException();
         }
+        audioSource = GetComponent<AudioSource>();
+
         uiManager.UpdateLives(lives);
         spawnManager.SpawnObjects();
     }
@@ -77,6 +79,7 @@ public class Player : MonoBehaviour
             uiManager.ShowTitleDisplay();
 		}
 	}
+
     public void TripleShotPowerUpOn(){
         isShotTripled = true;
         StartCoroutine(TripleShotPowerDownRoutine());
@@ -87,8 +90,7 @@ public class Player : MonoBehaviour
         StartCoroutine(SpeedPowerDownRoutine());
     }
 
-    private IEnumerator SpeedPowerDownRoutine()
-    {
+    private IEnumerator SpeedPowerDownRoutine(){
         yield return new WaitForSeconds(5.0f);
         isSpeedBoosted = false;
     }
@@ -101,6 +103,7 @@ public class Player : MonoBehaviour
     private void Shoot(){
         if(Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
             if(Time.time > fireTime) {
+                audioSource.Play();
                 if(isShotTripled == true) {
                     Instantiate(tripleShotPrefab, new Vector3(this.transform.position.x, this.transform.position.y, 0), Quaternion.identity);
                 } else {
