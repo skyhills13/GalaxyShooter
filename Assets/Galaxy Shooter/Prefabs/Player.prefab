@@ -58,6 +58,8 @@ GameObject:
   - component: {fileID: 61392554476294052}
   - component: {fileID: 50370546209193560}
   - component: {fileID: 82884868586786566}
+  - component: {fileID: 95202610287222160}
+  - component: {fileID: 114290677720444760}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -293,6 +295,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &95202610287222160
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598324189919542}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b412d20d0359f45e3b533abcfe9e9de9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95231153851821034
 Animator:
   serializedVersion: 3
@@ -361,6 +380,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114290677720444760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1598324189919542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41755a6fcb20c4f399c16d0930362d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114543388762585540
 MonoBehaviour:
   m_ObjectHideFlags: 1

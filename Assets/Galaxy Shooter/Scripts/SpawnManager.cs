@@ -13,6 +13,7 @@ public class SpawnManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Debug.Log("gamemanger :" + gameManager);
     }
 
     public void SpawnObjects(){
